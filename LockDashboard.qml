@@ -12,14 +12,47 @@ Item {
         property int inputIndex: -1
         property bool unlocked: false
         property bool programming: false
+        function unlock() {
+            priv.unlocked=true;
+        }
     }
-    function    unlock() {
-        unlocked=true;
-    }
-    function    startUnlocking()
+
+    function startUnlocking()
     {
-        inputIndex=0;
-        unlocked=false;
+        priv.inputIndex=0;
+        priv.unlocked=false;
+    }
+    function lock()
+    {
+        priv.inputIndex=-1;
+        priv.unlocked=false;
+    }
+
+    function numberInput(number)
+    {
+        if(priv.inputIndex>=0)
+        {
+            if(number!==priv.passcode[priv.inputIndex])
+            {
+                priv.lock();
+                return
+            }
+            else if (number===priv.passcode[priv.inputIndex])
+            {
+                if(priv.inputIndex==3)
+                {
+                    priv.unlock();
+                }
+                else
+                {
+                    priv.inputIndex++
+                }
+            }
+        }
+        else
+        {
+            return
+        }
     }
 
     Rectangle{
@@ -31,24 +64,28 @@ Item {
             StatusIndicator {
                 id: lockedIndicator
                 anchors.horizontalCenter: parent.horizontalCenter
+                active: !priv.unlocked
             }
 
             StatusIndicator {
                 id: unlockkingIndicator
                 color: "#ffe300"
                 anchors.horizontalCenter: parent.horizontalCenter
+                active: (!priv.unlocked && priv.inputIndex>=0)
             }
 
             StatusIndicator {
                 id: unlockedIndicator
                 color: "#42d617"
                 anchors.horizontalCenter: parent.horizontalCenter
+                active: priv.unlocked
             }
 
             StatusIndicator {
                 id: programmingIndicator
                 color: "#201a9c"
                 anchors.horizontalCenter: parent.horizontalCenter
+                active: priv.programming=true
             }
 
 

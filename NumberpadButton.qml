@@ -10,7 +10,7 @@ Item {
         id: button
 
         anchors.fill: parent
-        text: number;
+        text: number
         highlighted: false
         checkable: false
         font.pointSize: 40
