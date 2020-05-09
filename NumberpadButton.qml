@@ -4,6 +4,10 @@ import QtQuick.Controls 2.2
 Item {
     width: 90
     height: 90
+    signal clickSignal(string number)
+    signal buttonPressed(int id)
+    signal enterPressed()
+    signal clearPressed()
     property string number
     Button {
         id: button
@@ -15,5 +19,7 @@ Item {
         font.pointSize: 40
         font.weight: Font.Bold
         font.family: "Arial"
+
+        onClicked:parent.clickSignal(number)
     }
 }
