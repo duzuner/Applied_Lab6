@@ -15,10 +15,11 @@ Window {
                 dashboard.numberInput(id);
             }
             onEnterPressed: {
-                console.log("enter")
+                console.log("Enter")
+                dashboard.startProgramming();
             }
             onClearPressed: {
-                console.log("clear")
+                console.log("Clear")
                 dashboard.startUnlocking();
             }
 
