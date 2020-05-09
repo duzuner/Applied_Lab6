@@ -4,7 +4,9 @@ import QtQuick.Controls 2.2
 Item {
     width: 300
     height: 400
-
+    signal buttonPressed(int id)
+    signal enterPressed()
+    signal clearPressed()
     Grid {
         id: grid
         spacing: 5
@@ -15,6 +17,7 @@ Item {
         NumberpadButton {
             id: btn1
             number: qsTr("1")
+
             onClickSignal:buttonPressed(parseInt(number))
         }
         NumberpadButton {

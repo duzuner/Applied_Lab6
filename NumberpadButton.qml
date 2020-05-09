@@ -5,9 +5,6 @@ Item {
     width: 90
     height: 90
     signal clickSignal(string number)
-    signal buttonPressed(int id)
-    signal enterPressed()
-    signal clearPressed()
     property string number
     Button {
         id: button
